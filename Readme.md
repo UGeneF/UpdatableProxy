@@ -1,9 +1,9 @@
-#The problem
+# The problem
 
 Sometimes you have an object, which properties you want to update time after time - for instance, suppose you have a singleton config object that lives in a DI-container and which already saved to private fields of other singleton services that depend on that config. The properties of that object must be kept up-to-date with, say, a record in a database. By the way, for various reasons, you can have no access to `IOptionsMonitor<TConfig>` and a custom `ConfigurationProvider` - to the recommended choice for solving this problem.
 How can you update the properties of the object? You can call public setters - but that is no the option because setters are not threadsafe. You can change the values of the private fields using reflection. Or you can generate a type in runtime with the same interface as the source object has, and then proxy calls to those properties to the instance of your config that you are free to change in a threadsafe manner, as I did.
 
-#Solution
+# Solution
 
 My code works this way:
 
